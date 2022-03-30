@@ -100,7 +100,20 @@ function llenarSelect() {
 function filtrarAuto() {
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarColor).filter(filtrarTrans).filter(filtrarPuertas);
 
-    mostrarAutos(resultado);
+    if (resultado.length) {
+        mostrarAutos(resultado);
+    } else {
+        limpiarHtml();
+        noResultado();
+    }
+
+}
+
+function noResultado() {
+    const noResultado = document.createElement('div');
+    noResultado.classList.add('alerta', 'error');
+    noResultado.textContent = "No hay resultados, reintenta con otros parametros";
+    resultado.appendChild(noResultado);
 }
 
 function filtrarMarca(auto) {
